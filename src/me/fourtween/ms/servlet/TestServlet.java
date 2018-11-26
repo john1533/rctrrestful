@@ -1,6 +1,7 @@
 package me.fourtween.ms.servlet;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -101,7 +102,15 @@ public class TestServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+//		doGet(request, response);
+		System.out.println("test");
+		InputStream in = request.getInputStream();
+		int len = request.getContentLength();
+		System.out.println(len);
+		byte[] bs = new byte[len];
+		in.read(bs);
+		in.close();
+		System.out.println(new String(bs,"utf8"));
 	}
 
 }
